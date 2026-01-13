@@ -24,9 +24,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/duke-git/lancet/v2/validator"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"golang.org/x/text/transform"
+
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 // FileReader is a reader supporting offset seeking and reading one
@@ -283,19 +284,16 @@ func ReadFileByLine(path string) ([]string, error) {
 	}
 	defer f.Close()
 
+	scanner := bufio.NewScanner(f)
 	result := make([]string, 0)
-	buf := bufio.NewReader(f)
 
-	for {
-		line, _, err := buf.ReadLine()
-		l := string(line)
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			continue
-		}
+	for scanner.Scan() {
+		l := scanner.Text()
 		result = append(result, l)
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, err
 	}
 
 	return result, nil
