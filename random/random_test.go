@@ -4,6 +4,7 @@ import (
 	"reflect"
 	"regexp"
 	"strconv"
+	"sync"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -375,4 +376,32 @@ func TestRandNumberOfLength(t *testing.T) {
 	randi := RandNumberOfLength(6)
 	assert := internal.NewAssert(t, "TestRandNumberOfLength")
 	assert.Equal(6, len(strconv.Itoa(randi)))
+}
+
+// TestRandStringConcurrent verifies RandString is safe under high concurrency.
+// Before the fix, this test may panic or trigger data races.
+// After the fix, it should always pass.
+func TestRandStringConcurrent(t *testing.T) {
+	const (
+		goroutines = 100
+		iterations = 1000
+		length     = 32
+	)
+
+	var wg sync.WaitGroup
+	wg.Add(goroutines)
+
+	for g := 0; g < goroutines; g++ {
+		go func() {
+			defer wg.Done()
+			for i := 0; i < iterations; i++ {
+				s := RandString(length)
+				if len(s) != length {
+					t.Fatalf("unexpected string length: got %d, want %d", len(s), length)
+				}
+			}
+		}()
+	}
+
+	wg.Wait()
 }

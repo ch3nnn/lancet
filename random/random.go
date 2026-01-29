@@ -10,7 +10,7 @@ import (
 	"io"
 	"math"
 	"math/rand"
-	"os"
+	"sync"
 	"time"
 	"unsafe"
 
@@ -27,7 +27,14 @@ const (
 	AllChars        = Numeral + LowwerLetters + UpperLetters + SymbolChars
 )
 
-var rn = rand.NewSource(time.Now().UnixNano())
+// var rn = rand.NewSource(time.Now().UnixNano())
+
+// 每个 goroutine 独立的 rand.Rand，避免并发问题
+var randPool = sync.Pool{
+	New: func() any {
+		return rand.New(rand.NewSource(time.Now().UnixNano()))
+	},
+}
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
@@ -286,10 +293,9 @@ func nearestPowerOfTwo(cap int) int {
 
 // random generate a random string based on given string range.
 func random(s string, length int) string {
-	// 确保随机数生成器的种子是动态的
-	pid := os.Getpid()
-	timestamp := time.Now().UnixNano()
-	rand.Seed(int64(pid) + timestamp)
+	// 从 pool 中获取 rand.Rand（替代全局 rand）
+	rn := randPool.Get().(*rand.Rand)
+	defer randPool.Put(rn)
 
 	// 仿照strings.Builder
 	// 创建一个长度为 length 的字节切片
