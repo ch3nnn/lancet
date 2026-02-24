@@ -34,6 +34,23 @@ func CamelCase(s string) string {
 	return builder.String()
 }
 
+// UpperCamelCase coverts string to UpperCamelCase string. Non letters and numbers will be ignored.
+// Play: https://go.dev/play/p/todo
+func UpperCamelCase(s string) string {
+	var builder strings.Builder
+
+	strs := splitIntoStrings(s, false)
+	for _, str := range strs {
+		// if i == 0 {
+		// 	builder.WriteString(strings.ToLower(str))
+		// } else {
+		builder.WriteString(Capitalize(str))
+		// }
+	}
+
+	return builder.String()
+}
+
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
 // Play: https://go.dev/play/p/2OAjgbmAqHZ
 func Capitalize(s string) string {

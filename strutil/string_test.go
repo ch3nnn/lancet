@@ -30,6 +30,30 @@ func TestCamelCase(t *testing.T) {
 	}
 }
 
+func TestUpperCamelCase(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUpperCamelCase")
+
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foobar", "Foobar"},
+		{"&FOO:BAR$BAZ", "FooBarBaz"},
+		{"fooBar", "FooBar"},
+		{"FOObar", "FoObar"},
+		{"$foo%", "Foo"},
+		{"   $#$Foo   22    bar   ", "Foo22Bar"},
+		{"Foo-#1😄$_%^&*(1bar", "Foo11Bar"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, UpperCamelCase(tt.input))
+	}
+}
+
 func TestCapitalize(t *testing.T) {
 	t.Parallel()
 

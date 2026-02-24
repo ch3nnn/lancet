@@ -1999,7 +1999,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>BeforeLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之前的子字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#BeforeLast)]
     [[play](https://go.dev/play/p/pJfXXAoG_Te)]
--   **<big>CamelCase</big>** : 将字符串转换为 CamelCase 驼峰式字符串, 非字母和数字会被忽略。
+-   **<big>CamelCase</big>** : 将字符串转换为camelCase驼峰式字符串, 非字母和数字会被忽略。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#CamelCase)]
     [[play](https://go.dev/play/p/9eXP3tn2tUy)]
 -   **<big>Capitalize</big>** : 将字符串的第一个字符转换为大写。

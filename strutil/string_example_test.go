@@ -94,6 +94,21 @@ func ExampleCamelCase() {
 	// foo11Bar
 }
 
+func ExampleUpperCamelCase() {
+	strings := []string{"", "foobar", "&FOO:BAR$BAZ", "$foo%", "Foo-#1😄$_%^&*(1bar"}
+
+	for _, v := range strings {
+		s := UpperCamelCase(v)
+		fmt.Println(s)
+	}
+	// Output:
+	//
+	// Foobar
+	// FooBarBaz
+	// Foo
+	// Foo11Bar
+}
+
 func ExampleCapitalize() {
 	strings := []string{"", "Foo", "_foo", "fooBar", "foo-bar"}
 
