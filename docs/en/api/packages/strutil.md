@@ -27,6 +27,7 @@ import (
 -   [Before](#Before)
 -   [BeforeLast](#BeforeLast)
 -   [CamelCase](#CamelCase)
+-   [UpperCamelCase](#UpperCamelCase)
 -   [Capitalize](#Capitalize)
 -   [IsString](#IsString)
 -   [KebabCase](#KebabCase)
@@ -262,6 +263,40 @@ func main() {
     // fooBarBaz
     // foo
     // foo11Bar
+}
+```
+
+### <span id="UpperCamelCase">UpperCamelCase</span>
+
+<p>Coverts string to CamelCase string, non letters and numbers will be ignored.</p>
+
+<b>Signature:</b>
+
+```go
+func UpperCamelCase(s string) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    strings := []string{"", "foobar", "&FOO:BAR$BAZ", "$foo%", "Foo-#1😄$_%^&*(1bar"}
+
+	for _, v := range strings {
+		s := strutil.UpperCamelCase(v)
+		fmt.Println(s)
+	}
+	// Output:
+	//
+	// Foobar
+	// FooBarBaz
+	// Foo
+	// Foo11Bar
 }
 ```
 

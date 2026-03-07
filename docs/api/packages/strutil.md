@@ -27,6 +27,7 @@ import (
 -   [Before](#Before)
 -   [BeforeLast](#BeforeLast)
 -   [CamelCase](#CamelCase)
+-   [UpperCamelCase](#UpperCamelCase)
 -   [Capitalize](#Capitalize)
 -   [IsString](#IsString)
 -   [KebabCase](#KebabCase)
@@ -262,6 +263,40 @@ func main() {
     // fooBarBaz
     // foo
     // foo11Bar
+}
+```
+
+### <span id="UpperCamelCase">UpperCamelCase</span>
+
+<p>将字符串转换为大写驼峰式字符串，首字母大写写, 非字母和数字会被忽略。</p>
+
+<b>函数签名:</b>
+
+```go
+func UpperCamelCase(s string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    strings := []string{"", "foobar", "&FOO:BAR$BAZ", "$foo%", "Foo-#1😄$_%^&*(1bar"}
+
+	for _, v := range strings {
+		s := strutil.UpperCamelCase(v)
+		fmt.Println(s)
+	}
+	// Output:
+	//
+	// Foobar
+	// FooBarBaz
+	// Foo
+	// Foo11Bar
 }
 ```
 
