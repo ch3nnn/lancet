@@ -1,6 +1,7 @@
 package random
 
 import (
+	"fmt"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -391,17 +392,32 @@ func TestRandStringConcurrent(t *testing.T) {
 	var wg sync.WaitGroup
 	wg.Add(goroutines)
 
+	errCh := make(chan error, goroutines)
+
 	for g := 0; g < goroutines; g++ {
 		go func() {
 			defer wg.Done()
 			for i := 0; i < iterations; i++ {
 				s := RandString(length)
 				if len(s) != length {
-					t.Fatalf("unexpected string length: got %d, want %d", len(s), length)
+					errCh <- fmt.Errorf("unexpected string length: got %d, want %d", len(s), length)
 				}
 			}
 		}()
 	}
 
-	wg.Wait()
+	go func() {
+		wg.Wait()
+		close(errCh)
+	}()
+
+	for err := range errCh {
+		t.Errorf("test failed: %v", err)
+	}
+
+	if len(errCh) > 0 {
+		t.FailNow()
+	}
+
+	// wg.Wait()
 }
