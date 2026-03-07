@@ -276,7 +276,7 @@ func main() {
 func UpperCamelCase(s string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/vPHszjTXSFp)</span></b>
 
 ```go
 import (

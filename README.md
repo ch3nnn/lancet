@@ -1997,7 +1997,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/9eXP3tn2tUy)]
 -   **<big>UpperCamelCase</big>** : coverts source string to its UpperCamelCase string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#UpperCamelCase)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/vPHszjTXSFp)]
 -   **<big>Capitalize</big>** : converts the first character of source string to upper case and the remaining to lower case.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#Capitalize)]
     [[play](https://go.dev/play/p/2OAjgbmAqHZ)]

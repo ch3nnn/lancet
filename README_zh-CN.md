@@ -2004,7 +2004,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/9eXP3tn2tUy)]
 -   **<big>UpperCamelCase</big>** : 将字符串转换为CamelCase大写驼峰式字符串, 非字母和数字会被忽略。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#UpperCamelCase)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/vPHszjTXSFp)]
 -   **<big>Capitalize</big>** : 将字符串的第一个字符转换为大写。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#Capitalize)]
     [[play](https://go.dev/play/p/2OAjgbmAqHZ)]

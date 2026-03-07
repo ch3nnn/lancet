@@ -35,7 +35,7 @@ func CamelCase(s string) string {
 }
 
 // UpperCamelCase coverts string to UpperCamelCase string. Non letters and numbers will be ignored.
-// Play: https://go.dev/play/p/todo
+// Play: https://go.dev/play/p/vPHszjTXSFp
 func UpperCamelCase(s string) string {
 	var builder strings.Builder
 
